@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.1.3] - 2026-06-21
+
+### Fixed
+
+- `--fix` crash when removing multiple unused types from one file (types, interfaces, enums)
+
 ## [0.1.2] - 2026-06-21
 
 ### Added
@@ -36,6 +42,7 @@ All notable changes to this project will be documented in this file.
 - Re-export, JSDoc, and declaration-merge safety rules
 - 90%+ test coverage with fixture-based integration tests
 
+[0.1.3]: https://github.com/false200/orphants/releases/tag/v0.1.3
 [0.1.2]: https://github.com/false200/orphants/releases/tag/v0.1.2
 [0.1.1]: https://github.com/false200/orphants/releases/tag/v0.1.1
 [0.1.0]: https://github.com/false200/orphants/releases/tag/v0.1.0

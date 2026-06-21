@@ -1,0 +1,7 @@
+{
+  "name": "orphants-demo",
+  "private": true,
+  "devDependencies": {
+    "orphants": "file:.."
+  }
+}

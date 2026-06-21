@@ -12,6 +12,31 @@ const item: KeepMe = { name: "test" };
 export { item };
 `;
 
+const fixMeMultiSource = `type UnusedProfile = { id: string; bio: string };
+
+type UnusedRole = "admin" | "user";
+
+interface UnusedConfig {
+  debug: boolean;
+}
+
+enum UnusedTheme {
+  Light = "light",
+  Dark = "dark",
+}
+
+type UserId = string;
+
+interface User {
+  id: UserId;
+  name: string;
+}
+
+const user: User = { id: "1", name: "test" };
+
+export { user };
+`;
+
 describe("integration fixtures", () => {
   it(
     "detects basic unused types",
@@ -96,5 +121,31 @@ describe("removeUnusedTypes", () => {
     expect(after.unused).toHaveLength(0);
   },
   15000,
+  );
+
+  it(
+    "removes multiple unused types from one file",
+    async () => {
+      writeFileSync(fixturePath("fix-me/src/index.ts"), fixMeMultiSource);
+
+      const { removeUnusedTypes } = await import("../src/index");
+      const fixFixture = fixturePath("fix-me/src");
+
+      const before = await findUnusedTypes({ path: fixFixture });
+      expect(before.unused.map((u) => u.name)).toEqual([
+        "UnusedProfile",
+        "UnusedRole",
+        "UnusedConfig",
+        "UnusedTheme",
+      ]);
+
+      const { fixResult } = await removeUnusedTypes({ path: fixFixture });
+      expect(fixResult.removedCount).toBe(4);
+      expect(fixResult.filesTouched).toBe(1);
+
+      const after = await findUnusedTypes({ path: fixFixture });
+      expect(after.unused).toHaveLength(0);
+    },
+    15000,
   );
 });

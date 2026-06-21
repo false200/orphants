@@ -1,17 +1,6 @@
-import { type SourceFile } from "ts-morph";
-import type { Project } from "ts-morph";
+import { type Project, type SourceFile } from "ts-morph";
 import { findCandidateByUnused } from "./resolver";
-import type { FixResult, TypeCandidate, TypeDeclarationNode, UnusedType } from "./types";
-
-function removeLeadingComments(node: TypeDeclarationNode): void {
-  const sourceFile = node.getSourceFile();
-  const fullStart = node.getFullStart();
-  const start = node.getStart();
-
-  if (fullStart < start) {
-    sourceFile.removeText(fullStart, start);
-  }
-}
+import type { FixResult, TypeCandidate, UnusedType } from "./types";
 
 function collapseExtraBlankLines(sourceFile: SourceFile): void {
   const text = sourceFile.getFullText();
@@ -47,27 +36,23 @@ export function removeUnusedTypes(
       (a, b) => b.node.getStart() - a.node.getStart(),
     );
 
-    let touched = false;
+    if (sorted.length === 0) {
+      continue;
+    }
+
+    const sourceFile = sorted[0]!.node.getSourceFile();
+
+    if (sourceFile.isDeclarationFile() || sourceFile.getFilePath().endsWith(".d.ts")) {
+      continue;
+    }
 
     for (const candidate of sorted) {
-      const node = candidate.node;
-      const sourceFile = node.getSourceFile();
-
-      if (sourceFile.isDeclarationFile() || sourceFile.getFilePath().endsWith(".d.ts")) {
-        continue;
-      }
-
-      removeLeadingComments(node);
-      node.remove();
+      candidate.node.remove();
       removedCount++;
-      touched = true;
     }
 
-    if (touched) {
-      const sourceFile = sorted[0]!.node.getSourceFile();
-      collapseExtraBlankLines(sourceFile);
-      filesTouched++;
-    }
+    collapseExtraBlankLines(sourceFile);
+    filesTouched++;
   }
 
   project.saveSync();
