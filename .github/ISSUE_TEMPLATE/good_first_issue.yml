@@ -1,0 +1,38 @@
+---
+name: Good first issue proposal
+description: Suggest a small task for new contributors
+title: "[good first issue] "
+labels:
+  - good first issue
+  - help wanted
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Propose a bite-sized task that a newcomer can pick up.
+
+  - type: textarea
+    id: task
+    attributes:
+      label: Task description
+      placeholder: Add a test fixture for enum re-exports
+    validations:
+      required: true
+
+  - type: textarea
+    id: hints
+    attributes:
+      label: Hints for contributors
+      description: Files to look at, docs to read
+    validations:
+      required: false
+
+  - type: dropdown
+    id: difficulty
+    attributes:
+      label: Difficulty
+      options:
+        - Easy
+        - Medium
+    validations:
+      required: true

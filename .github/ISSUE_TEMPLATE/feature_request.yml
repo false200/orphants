@@ -1,18 +1,48 @@
 ---
 name: Feature request
-about: Suggest an idea for orphants
+description: Suggest a new feature or improvement
 title: "[feature] "
-labels: enhancement
+labels:
+  - enhancement
 body:
+  - type: markdown
+    attributes:
+      value: |
+        Describe the problem first, then your proposed solution.
+
   - type: textarea
     id: problem
     attributes:
-      label: What problem does this solve?
+      label: Problem
+      description: What pain point does this solve?
+      placeholder: I have hundreds of dead types and orphants misses ...
     validations:
       required: true
+
   - type: textarea
     id: proposal
     attributes:
       label: Proposed solution
+      description: How should orphants behave?
     validations:
       required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Other tools or workarounds you tried
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: scope
+    attributes:
+      label: Area
+      description: Which part of the project does this affect?
+      options:
+        - label: CLI flags or output
+        - label: Type detection rules
+        - label: `--fix` removal behavior
+        - label: Programmatic API
+        - label: Documentation

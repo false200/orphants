@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Questions and discussions
+    url: https://github.com/false200/orphants/issues/new?template=question.yml
+    about: Ask a question about using orphants
+  - name: npm package
+    url: https://www.npmjs.com/package/orphants
+    about: Install and version info on npm

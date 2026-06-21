@@ -1,0 +1,27 @@
+---
+name: Question
+description: Ask how to use orphants
+title: "[question] "
+labels:
+  - question
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Ask your question below. For bugs, use the bug report template instead.
+
+  - type: textarea
+    id: question
+    attributes:
+      label: Your question
+      placeholder: How do I ignore a folder when scanning a monorepo?
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: Project setup, command you ran, orphants version
+    validations:
+      required: false

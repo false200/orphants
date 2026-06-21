@@ -1,26 +1,68 @@
 ---
 name: Bug report
-about: Report a problem with orphants
+description: Report broken behavior or incorrect results
 title: "[bug] "
-labels: bug
+labels:
+  - bug
 body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a bug. Please fill in as much detail as you can.
+
   - type: textarea
     id: description
     attributes:
       label: What happened?
+      description: What did you expect vs what actually happened?
+      placeholder: orphants reported X as unused but it is referenced in ...
     validations:
       required: true
+
   - type: textarea
     id: reproduce
     attributes:
-      label: How can we reproduce it?
+      label: Steps to reproduce
+      description: Minimal TypeScript snippet or repo steps
+      placeholder: |
+        1. Create file with ...
+        2. Run `npx orphants ./src`
+        3. See incorrect result
     validations:
       required: true
+
   - type: input
     id: version
     attributes:
       label: orphants version
+      placeholder: "0.1.1"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: os
+    attributes:
+      label: Operating system
+      options:
+        - Windows
+        - macOS
+        - Linux
+        - Other
+    validations:
+      required: true
+
   - type: input
     id: node
     attributes:
       label: Node.js version
+      placeholder: "20.x"
+    validations:
+      required: true
+
+  - type: textarea
+    id: extra
+    attributes:
+      label: Extra context
+      description: tsconfig, flags used, screenshots, logs
+    validations:
+      required: false

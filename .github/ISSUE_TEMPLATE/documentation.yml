@@ -1,0 +1,41 @@
+---
+name: Documentation
+description: Improve README, docs, or examples
+title: "[docs] "
+labels:
+  - documentation
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Help us improve docs for new contributors and users.
+
+  - type: textarea
+    id: page
+    attributes:
+      label: Which doc needs work?
+      placeholder: README, CONTRIBUTING, CLI --help text, etc.
+    validations:
+      required: true
+
+  - type: textarea
+    id: issue
+    attributes:
+      label: What is unclear or missing?
+    validations:
+      required: true
+
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: Suggested change
+      description: Optional draft text or outline
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: willing
+    attributes:
+      label: Contribution
+      options:
+        - label: I am willing to open a PR for this

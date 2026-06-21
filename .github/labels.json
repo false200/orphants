@@ -1,0 +1,62 @@
+[
+  {
+    "name": "bug",
+    "color": "d73a4a",
+    "description": "Something is broken or incorrect"
+  },
+  {
+    "name": "enhancement",
+    "color": "a2eeef",
+    "description": "New feature or improvement"
+  },
+  {
+    "name": "documentation",
+    "color": "0075ca",
+    "description": "README, docs, or comments"
+  },
+  {
+    "name": "good first issue",
+    "color": "7057ff",
+    "description": "Good for newcomers"
+  },
+  {
+    "name": "help wanted",
+    "color": "008672",
+    "description": "Extra attention or community help needed"
+  },
+  {
+    "name": "question",
+    "color": "d876e3",
+    "description": "Question or discussion"
+  },
+  {
+    "name": "ci",
+    "color": "f9d0c4",
+    "description": "GitHub Actions or CI pipeline"
+  },
+  {
+    "name": "dependencies",
+    "color": "0366d6",
+    "description": "Dependency updates or npm packages"
+  },
+  {
+    "name": "typescript",
+    "color": "3178c6",
+    "description": "TypeScript analysis or edge cases"
+  },
+  {
+    "name": "cli",
+    "color": "cfd3d7",
+    "description": "Command-line interface or flags"
+  },
+  {
+    "name": "performance",
+    "color": "fbca04",
+    "description": "Speed, memory, or large codebase scans"
+  },
+  {
+    "name": "invalid",
+    "color": "e4e669",
+    "description": "Not valid or not reproducible"
+  }
+]

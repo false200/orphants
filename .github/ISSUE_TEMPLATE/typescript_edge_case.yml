@@ -1,0 +1,49 @@
+---
+name: TypeScript edge case
+description: Report a type, interface, or enum detection edge case
+title: "[typescript] "
+labels:
+  - typescript
+body:
+  - type: markdown
+    attributes:
+      value: |
+        orphants missed a dead type, or flagged a type that should stay.
+
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Declaration kind
+      options:
+        - type alias
+        - interface
+        - enum
+    validations:
+      required: true
+
+  - type: dropdown
+    id: result
+    attributes:
+      label: What went wrong?
+      options:
+        - Flagged as unused but should be kept
+        - Not flagged but should be removed
+    validations:
+      required: true
+
+  - type: textarea
+    id: code
+    attributes:
+      label: Minimal code sample
+      description: Paste the smallest repro possible
+      render: typescript
+    validations:
+      required: true
+
+  - type: textarea
+    id: flags
+    attributes:
+      label: CLI flags used
+      placeholder: "--include-exported --ignore **/legacy/**"
+    validations:
+      required: false
