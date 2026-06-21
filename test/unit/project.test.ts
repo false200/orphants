@@ -36,4 +36,24 @@ describe("project bootstrap", () => {
     expect(files).toHaveLength(1);
     expect(resolve(files[0]?.getFilePath() ?? "")).toBe(resolve(filePath));
   });
+
+  it("loads project with an explicit tsconfig path", () => {
+    const tsconfig = fixturePath("basic-unused/tsconfig.json");
+    const { project, context, scanRoot } = loadProject({
+      path: fixturePath("basic-unused/src"),
+      project: tsconfig,
+    });
+
+    expect(context.tsConfigFilePath).toBe(tsconfig);
+    const files = getScannableSourceFiles(project, scanRoot, context);
+    expect(files.length).toBeGreaterThan(0);
+  });
+
+  it("throws when explicit tsconfig path is missing", () => {
+    expect(() =>
+      loadProject({
+        project: "missing-tsconfig.json",
+      }),
+    ).toThrow(/Could not find tsconfig/);
+  });
 });

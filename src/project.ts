@@ -1,5 +1,5 @@
-import { statSync } from "node:fs";
-import { dirname, resolve } from "node:path";
+import { existsSync, statSync } from "node:fs";
+import { dirname, isAbsolute, resolve } from "node:path";
 import { Project, type SourceFile } from "ts-morph";
 import type { OrphantsContext } from "./types";
 import {
@@ -17,13 +17,14 @@ export interface LoadedProject {
 
 export function loadProject(options: {
   path?: string;
+  project?: string;
   ignore?: string[];
   includeExported?: boolean;
   cwd?: string;
 }): LoadedProject {
   const cwd = options.cwd ?? process.cwd();
   const scanRoot = resolveScanRoot(options.path, cwd);
-  const tsConfigFilePath = findNearestTsConfig(scanRoot);
+  const tsConfigFilePath = resolveTsConfigPath(options.project, scanRoot, cwd);
 
   const project = new Project({
     tsConfigFilePath,
@@ -38,6 +39,30 @@ export function loadProject(options: {
   };
 
   return { project, context, scanRoot };
+}
+
+function resolveTsConfigPath(
+  explicitPath: string | undefined,
+  scanRoot: string,
+  cwd: string,
+): string {
+  if (!explicitPath) {
+    return findNearestTsConfig(scanRoot);
+  }
+
+  const candidate = isAbsolute(explicitPath)
+    ? resolve(explicitPath)
+    : resolve(cwd, explicitPath);
+
+  if (!existsSync(candidate)) {
+    throw new Error(`Could not find tsconfig at ${explicitPath}`);
+  }
+
+  if (!candidate.endsWith(".json")) {
+    throw new Error(`Project path must point to a tsconfig.json file: ${explicitPath}`);
+  }
+
+  return candidate;
 }
 
 export function getScannableSourceFiles(

@@ -31,6 +31,7 @@ export interface OrphantsStats {
   totalTypes: number;
   totalFiles: number;
   unusedCount: number;
+  unusedByKind: Record<TypeKind, number>;
 }
 
 export interface OrphantsResult {
@@ -46,8 +47,10 @@ export interface FixResult {
 
 export interface OrphantsOptions {
   path?: string;
+  project?: string;
   fix?: boolean;
   json?: boolean;
+  statsOnly?: boolean;
   ignore?: string[];
   includeExported?: boolean;
   ci?: boolean;

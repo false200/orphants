@@ -8,6 +8,7 @@ import type { FixResult, OrphantsOptions, OrphantsResult } from "./types";
 export async function findUnusedTypes(options: OrphantsOptions = {}): Promise<OrphantsResult> {
   const { project, context, scanRoot } = loadProject({
     path: options.path,
+    project: options.project,
     ignore: options.ignore,
     includeExported: options.includeExported,
   });
@@ -28,6 +29,7 @@ export async function removeUnusedTypes(
 ): Promise<{ result: OrphantsResult; fixResult: FixResult }> {
   const { project, context, scanRoot } = loadProject({
     path: options.path,
+    project: options.project,
     ignore: options.ignore,
     includeExported: options.includeExported,
   });

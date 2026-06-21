@@ -106,8 +106,10 @@ orphants <path> [options]
 
 | Option | Description |
 |--------|-------------|
+| `--project`, `-p` | Path to a specific `tsconfig.json` |
 | `--fix` | Remove unused types in place |
 | `--json` | Output results as JSON |
+| `--stats-only` | Print summary counts only, no per-type list |
 | `--ignore <glob>` | Glob pattern of files to skip (repeatable) |
 | `--include-exported` | Also flag exported types with no external consumers |
 | `--ci` | Exit with code 1 if any unused types are found |
@@ -128,6 +130,12 @@ npx orphants ./src --fix
 
 # Skip legacy folders
 npx orphants ./src --ignore "**/legacy/**"
+
+# Use a specific tsconfig (monorepos, nested configs)
+npx orphants ./src --project ./packages/app/tsconfig.json
+
+# Compact output for scripts
+npx orphants ./src --stats-only
 
 # JSON output
 npx orphants ./src --json

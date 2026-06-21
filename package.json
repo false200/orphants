@@ -1,6 +1,6 @@
 {
   "name": "orphants",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Find and remove unused TypeScript type aliases, interfaces, and enums",
   "type": "module",
   "main": "./dist/index.js",
