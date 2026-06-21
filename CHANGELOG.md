@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.1.1] - 2026-06-21
+
+### Changed
+
+- README copy and formatting cleanup
+- GitHub release and publish workflow docs
+
 ## [0.1.0] - 2026-06-21
 
 ### Added
@@ -16,4 +23,5 @@ All notable changes to this project will be documented in this file.
 - Re-export, JSDoc, and declaration-merge safety rules
 - 90%+ test coverage with fixture-based integration tests
 
+[0.1.1]: https://github.com/false200/orphants/releases/tag/v0.1.1
 [0.1.0]: https://github.com/false200/orphants/releases/tag/v0.1.0
