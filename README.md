@@ -6,46 +6,47 @@ Find and kill unused TypeScript types across your entire codebase. Zero config. 
 
 [![CI](https://github.com/false200/orphants/actions/workflows/ci.yml/badge.svg)](https://github.com/false200/orphants/actions/workflows/ci.yml)
 [![npm](https://img.shields.io/npm/v/orphants?label=npm&color=cb3837)](https://www.npmjs.com/package/orphants)
-[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![License MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Node](https://img.shields.io/badge/node-%3E%3D18-brightgreen.svg)](https://nodejs.org/)
 
 ---
 
 ## Table of Contents
 
-- [Features](#-features)
-- [Getting started](#-getting-started)
-- [Usage](#-usage)
-- [CI integration](#-ci-integration)
-- [Programmatic API](#-programmatic-api)
-- [How it works](#-how-it-works)
-- [Comparison](#-comparison)
-- [FAQ](#-faq)
-- [Development](#-development)
-- [Contributing](#-contributing)
-- [License](#-license)
+- [Features](#features)
+- [Getting started](#getting-started)
+- [Usage](#usage)
+- [CI integration](#ci-integration)
+- [Programmatic API](#programmatic-api)
+- [How it works](#how-it-works)
+- [Comparison](#comparison)
+- [FAQ](#faq)
+- [Development](#development)
+- [Contributing](#contributing)
+- [Changelog](#changelog)
+- [License](#license)
 
 ---
 
-## 🎯 Features
+## Features
 
-- **Zero config.** Point at a path — orphants discovers `tsconfig.json` automatically.
-- **Dead type detection.** Finds unused `type`, `interface`, and `enum` declarations.
-- **Auto-fix.** Remove unused types in place with `--fix`.
-- **CI-ready.** Exit code 1 when dead types exist — built for pull request gates.
-- **JSON output.** Machine-readable results for scripts and dashboards.
-- **Export analysis.** Optionally flag exported types with no external consumers.
-- **Ignore globs.** Skip legacy or generated folders with `--ignore`.
-- **Safe by default.** Preserves re-exports, JSDoc references, and declaration merging.
-- **Programmatic API.** Use as a library, not just a CLI.
-- **Local only.** All analysis runs on your machine — nothing is uploaded.
-- **Free.** Completely free and open source under MIT.
+- **Zero config**, point at a path and orphants discovers `tsconfig.json` automatically
+- **Dead type detection**, finds unused `type`, `interface`, and `enum` declarations
+- **Auto-fix**, remove unused types in place with `--fix`
+- **CI-ready**, exit code 1 when dead types exist, built for pull request gates
+- **JSON output**, machine-readable results for scripts and dashboards
+- **Export analysis**, optionally flag exported types with no external consumers
+- **Ignore globs**, skip legacy or generated folders with `--ignore`
+- **Safe by default**, preserves re-exports, JSDoc references, and declaration merging
+- **Programmatic API**, use as a library, not just a CLI
+- **Local only**, all analysis runs on your machine, nothing is uploaded
+- **Free**, open source under MIT
 
-> Knip finds unused **exports**. orphants finds unused **type declarations** — including types never referenced anywhere, even in the same file.
+> Knip finds unused **exports**. orphants finds unused **type declarations**, including types never referenced anywhere, even in the same file.
 
 ---
 
-## 🚀 Getting started
+## Getting started
 
 ### npm
 
@@ -53,7 +54,7 @@ Find and kill unused TypeScript types across your entire codebase. Zero config. 
 npx orphants ./src
 ```
 
-Install as a dev dependency:
+Install as a dev dependency
 
 ```bash
 npm install -D orphants
@@ -78,7 +79,7 @@ Found 847 types across 134 files
 Run with --fix to remove them
 ```
 
-Remove dead types:
+Remove dead types
 
 ```bash
 npx orphants ./src --fix
@@ -97,7 +98,7 @@ npx orphants ./src --fix
 
 ---
 
-## 📖 Usage
+## Usage
 
 ```
 orphants <path> [options]
@@ -134,7 +135,7 @@ npx orphants ./src --json
 
 ---
 
-## 🔄 CI integration
+## CI integration
 
 ```yaml
 - name: Check for unused types
@@ -143,7 +144,7 @@ npx orphants ./src --json
 
 ---
 
-## 🧩 Programmatic API
+## Programmatic API
 
 ```ts
 import { findUnusedTypes, removeUnusedTypes } from "orphants";
@@ -158,14 +159,14 @@ console.log(fixResult.removedCount);
 
 ---
 
-## 🔍 How it works
+## How it works
 
-orphants uses [ts-morph](https://github.com/dsherret/ts-morph) for AST analysis — no regex, no guesswork.
+orphants uses [ts-morph](https://github.com/dsherret/ts-morph) for AST analysis. No regex, no guesswork.
 
-1. **Scan** — collect every `type`, `interface`, and `enum` (skips `.d.ts`)
-2. **Resolve** — `findReferencesAsNodes()` per declaration with safety rules
-3. **Report** — human-readable or JSON output
-4. **Remove** — optional in-place deletion via `--fix`
+1. **Scan**, collect every `type`, `interface`, and `enum` (skips `.d.ts`)
+2. **Resolve**, `findReferencesAsNodes()` per declaration with safety rules
+3. **Report**, human-readable or JSON output
+4. **Remove**, optional in-place deletion via `--fix`
 
 **Protected from removal**
 
@@ -181,21 +182,21 @@ orphants uses [ts-morph](https://github.com/dsherret/ts-morph) for AST analysis 
 
 ---
 
-## 📊 Comparison
+## Comparison
 
 | Tool | Unused exports | Unused type / interface / enum |
 |------|:--------------:|:------------------------------:|
-| `tsc --noUnusedLocals` | — | No |
+| `tsc --noUnusedLocals` | No | No |
 | ts-prune / ts-unused-exports | Yes | No |
 | Knip | Yes | No |
-| **orphants** | — | **Yes** |
+| **orphants** | No | **Yes** |
 
 ---
 
-## ❓ FAQ
+## FAQ
 
 **How is this different from Knip or ts-prune?**  
-Those tools focus on unused exports. orphants targets type declarations that are never referenced — including non-exported aliases in the same file.
+Those tools focus on unused exports. orphants targets type declarations that are never referenced, including non-exported aliases in the same file.
 
 **Will `--fix` break my code?**  
 Only declarations with zero references are removed, after safety checks. Prefer `--ci` in PRs and `--fix` in dedicated cleanup PRs.
@@ -205,7 +206,7 @@ No. Everything runs locally.
 
 ---
 
-## 🛠 Development
+## Development
 
 ```bash
 git clone https://github.com/false200/orphants.git
@@ -218,14 +219,20 @@ node dist/cli.js ./src
 
 ---
 
-## 🏆 Contributing
+## Contributing
 
 Contributions are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
-To become a contributor, fork the repo, add your changes with tests, and open a pull request.
+Fork the repo, add your changes with tests, and open a pull request.
 
 ---
 
-## 📄 License
+## Changelog
+
+See [CHANGELOG.md](CHANGELOG.md) for release history.
+
+---
+
+## License
 
 This project is open-source software licensed under the [MIT license](LICENSE).
