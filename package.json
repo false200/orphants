@@ -19,6 +19,7 @@
     "test": "npm run build && vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
+    "pretest:coverage": "npm run build",
     "typecheck": "tsc --noEmit",
     "prepublishOnly": "npm run build",
     "prepack": "npm run build"

@@ -168,5 +168,6 @@ export function isPathWithinRoot(filePath: string, scanRoot: string): boolean {
 }
 
 export function toPosixPath(filePath: string): string {
-  return isAbsolute(filePath) ? normalize(filePath).split(sep).join("/") : filePath.split(sep).join("/");
+  const normalized = isAbsolute(filePath) ? normalize(filePath) : filePath;
+  return normalized.replace(/\\/g, "/");
 }
