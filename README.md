@@ -23,6 +23,7 @@ Find and kill unused TypeScript types across your entire codebase. Zero config. 
 - [FAQ](#-faq)
 - [Development](#-development)
 - [Contributing](#-contributing)
+- [Changelog](#-changelog)
 - [License](#-license)
 
 ---
@@ -223,6 +224,12 @@ node dist/cli.js ./src
 Contributions are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
 To become a contributor, fork the repo, add your changes with tests, and open a pull request.
+
+---
+
+## 📋 Changelog
+
+See [CHANGELOG.md](CHANGELOG.md) for release history.
 
 ---
 
