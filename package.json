@@ -6,7 +6,7 @@
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "bin": {
-    "orphants": "./dist/cli.js"
+    "orphants": "dist/cli.js"
   },
   "files": [
     "dist",
@@ -20,7 +20,8 @@
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
     "typecheck": "tsc --noEmit",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "prepack": "npm run build"
   },
   "keywords": [
     "typescript",
@@ -31,7 +32,7 @@
     "cli",
     "lint"
   ],
-  "author": "false200",
+  "author": "divinaicodes",
   "license": "MIT",
   "homepage": "https://github.com/false200/orphants#readme",
   "bugs": {
@@ -40,6 +41,10 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/false200/orphants.git"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
   },
   "engines": {
     "node": ">=18"
