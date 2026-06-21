@@ -6,7 +6,7 @@
 
 <p align="center">
   <a href="https://github.com/false200/orphants/actions/workflows/ci.yml"><img src="https://github.com/false200/orphants/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
-  <a href="https://www.npmjs.com/package/orphants"><img src="https://img.shields.io/npm/v/orphants.svg" alt="npm version"></a>
+  <a href="https://www.npmjs.com/package/orphants"><img src="https://img.shields.io/npm/v/orphants?label=npm&color=cb3837" alt="npm"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License: MIT"></a>
   <a href="https://nodejs.org/"><img src="https://img.shields.io/badge/node-%3E%3D18-brightgreen.svg" alt="Node >= 18"></a>
 </p>
@@ -41,10 +41,16 @@ Maintained by **[divinaicodes](https://www.npmjs.com/~divinaicodes)** · [false2
 
 ## Get started
 
-The fastest way to try orphants:
+**After npm publish** (fastest):
 
 ```bash
 npx orphants ./src
+```
+
+**Before npm publish** — run from GitHub:
+
+```bash
+npx github:false200/orphants ./src
 ```
 
 Install as a dev dependency:
